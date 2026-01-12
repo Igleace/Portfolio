@@ -6,19 +6,15 @@
     <title>Portfolio de Compétences - Année 2 - BUT Informatique</title>
     <style>
         :root {
-            /* Palette Nature / Verdure */
-            --primary-color: #2e7d32; /* Vert forêt pour les éléments importants */
-            --bg-color: #f7fee7;      /* Fond écru/vert très pâle (Lime-50) */
-            --text-color: #1a2e05;    /* Texte vert très sombre (presque noir) */
-            --table-border: #a3b18a;  /* Bordures couleur vert sauge */
-            
-            /* Couleurs d'état */
-            --na-bg: #ffe4e6;         /* Rouge très doux */
-            --eca-bg: #fef9c3;        /* Jaune soleil doux */
-            --a-bg: #dcfce7;          /* Vert frais pour l'acquis */
-            
-            --nav-hover: #dcfce7;     /* Couleur au survol du menu */
-            --th-bg: #ecfccb;         /* Fond des en-têtes de tableau (Lime-100) */
+            --primary-color: #2e7d32;
+            --bg-color: #f7fee7;
+            --text-color: #1a2e05;
+            --table-border: #a3b18a;
+            --na-bg: #ffe4e6;
+            --eca-bg: #fef9c3;
+            --a-bg: #dcfce7;
+            --nav-hover: #dcfce7;
+            --th-bg: #ecfccb;
         }
 
         body {
@@ -52,7 +48,7 @@
             background: white;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.15); /* Ombre légèrement verte */
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.15);
             position: sticky;
             top: 10px;
             z-index: 100;
@@ -102,35 +98,47 @@
 
         table {
             width: 100%;
-            border-collapse: collapse;
             min-width: 800px;
+            border-collapse: separate; 
+            border-spacing: 10px; 
+            margin-top: 20px;
         }
 
         th, td {
-            border: 1px solid var(--table-border);
+            border: 3px solid #5d4037;
+            border-radius: 8px 15px 8px 15px; 
+            
             padding: 15px;
             text-align: left;
             vertical-align: top;
             font-size: 0.9rem;
+            box-shadow: 3px 3px 0px rgba(62, 39, 35, 0.4); 
+            background-color: rgba(255, 255, 255, 0.95);
         }
 
         th { 
-            background-color: var(--th-bg); 
-            font-weight: 700; 
-            color: var(--primary-color); 
-            border-bottom: 2px solid var(--primary-color);
+            background-color: #ecfccb; 
+            color: #2e7d32; 
+            border-width: 4px;
+            border-color: #3e2723;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
         }
 
-        .ac-cell { background-color: #fafff4; font-weight: 600; width: 25%; color: var(--primary-color); }
-        .na-cell { background-color: var(--na-bg); }
-        .eca-cell { background-color: var(--eca-bg); }
-        .a-cell { background-color: var(--a-bg); border-left: 3px solid var(--primary-color); }
+        .ac-cell { background-color: #fafff4; font-weight: 700; width: 20%; color: #2e7d32; }
+        .na-cell { background-color: #ffe4e6; }
+        .eca-cell { background-color: #fef9c3; }
+        .a-cell { 
+            background-color: #dcfce7; 
+            border-left: 6px solid #2e7d32; 
+        }
+
         
         a:focus { outline: 3px solid var(--primary-color); outline-offset: 2px; }
 
         footer { text-align: center; margin-top: 50px; color: #576574; font-size: 0.9rem; }
         
-        /* Bouton Sticky */
         .home-link { 
             position: fixed;
             top: 20px;
@@ -206,7 +214,7 @@
         .evidence-desc {
             font-size: 0.9rem;
             color: var(--text-color);
-            background-color: #fafff4; /* Fond très léger sous le texte */
+            background-color: #fafff4;
             padding: 10px;
             border-radius: 4px;
             border-left: 3px solid var(--table-border);
@@ -279,7 +287,7 @@
                 </table>
             </div>
             <div class="evidence-container">
-                <h3 class="evidence-title">Preuves de réalisation</h3>
+                <h3 class="evidence-title">Application dans des projets</h3>
                 <div class="evidence-grid">
                     <div class="evidence-card">
                         <img src="images/competence1-1.png" alt="Interface de l'application ÉcoGestUM">
@@ -341,7 +349,7 @@
                 </table>
             </div>
             <div class="evidence-container">
-                <h3 class="evidence-title">Preuves de réalisation</h3>
+                <h3 class="evidence-title">Application dans des projets</h3>
                 <div class="evidence-grid">
                     <div class="evidence-card">
                         <img src="images/competence2-1-1.png" alt="Implémentation du Chiffre de Vigenere en Python">
@@ -390,7 +398,7 @@
                 </table>
             </div>
             <div class="evidence-container">
-                <h3 class="evidence-title"> Preuves de réalisation</h3>
+                <h3 class="evidence-title"> Application dans des projets</h3>
                 <div class="evidence-grid">
                     <div class="evidence-card">
                         <img src="images/competence3-1.png" alt="Interface de connexion Musicode">
@@ -452,7 +460,7 @@
                 </table>
             </div>
             <div class="evidence-container">
-                <h3 class="evidence-title"> Preuves de réalisation</h3>
+                <h3 class="evidence-title"> Application dans des projets</h3>
                 <div class="evidence-grid">
                     <div class="evidence-card">
                         <img src="images/competence4-1-1.png" alt="MCD de la base de données">
@@ -507,7 +515,7 @@
                 </table>
             </div>
             <div class="evidence-container">
-                <h3 class="evidence-title"> Preuves de réalisation</h3>
+                <h3 class="evidence-title"> Application dans des projets</h3>
                 <div class="evidence-grid">
                     <div class="evidence-card">
                         <img src="images/competence5-1.png" alt="Tableau Trello">
@@ -570,7 +578,7 @@
                 </table>
             </div>
             <div class="evidence-container">
-                <h3 class="evidence-title"> Preuves de réalisation</h3>
+                <h3 class="evidence-title"> Application dans des projets</h3>
                 <div class="evidence-grid">
                     <div class="evidence-card">
                         <img src="images/competence6-1.png" alt="Sommaire du Cahier des Charges">

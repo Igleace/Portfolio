@@ -26,19 +26,13 @@
             color: var(--text-color);
             margin: 0;
             padding: 20px;
-
-            /* --- CORRECTION BACKGROUND --- */
-            /* Couleur de secours (si l'image charge mal) */
             background-color: #4ade80; 
-            
-            /* Image de champ d'herbe fiable */
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/dd/Mossy_Forest_Floor.jpg');
-            
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/dd/Mossy_Forest_Floor.jpg');            
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            min-height: 100vh; /* Force le body à prendre toute la hauteur */
+            min-height: 100vh;
         }
 
         header {
@@ -105,31 +99,59 @@
 
         .table-container { overflow-x: auto; }
 
+        /* --- TABLEAU STYLE "CABANE / BRANCHES" --- */
+        
         table {
             width: 100%;
-            border-collapse: collapse;
             min-width: 800px;
+            /* IMPORTANT : On sépare les cellules pour pouvoir les encadrer individuellement */
+            border-collapse: separate; 
+            /* Espace entre les "branches" */
+            border-spacing: 10px; 
+            margin-top: 20px;
         }
 
         th, td {
-            border: 1px solid var(--table-border);
+            /* Le cadre "Branche" */
+            border: 3px solid #5d4037; /* Marron écorce sombre */
+            
+            /* Arrondi irrégulier pour faire moins "informatique" et plus "nature" */
+            border-radius: 8px 15px 8px 15px; 
+            
             padding: 15px;
             text-align: left;
             vertical-align: top;
             font-size: 0.9rem;
+            
+            /* Ombre pour donner du volume aux cadres (effet bois flottant) */
+            box-shadow: 3px 3px 0px rgba(62, 39, 35, 0.4); 
+            
+            background-color: rgba(255, 255, 255, 0.95);
         }
 
         th { 
-            background-color: var(--th-bg); 
-            font-weight: 700; 
-            color: var(--primary-color); 
-            border-bottom: 2px solid var(--primary-color);
+            /* En-tête : Écorce plus épaisse et fond vert clair */
+            background-color: #ecfccb; 
+            color: #2e7d32; 
+            border-width: 4px;
+            border-color: #3e2723; /* Marron très foncé */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            
+            /* Petite déco feuille (optionnel) */
+            position: relative;
         }
 
-        .ac-cell { background-color: #fafff4; font-weight: 600; width: 20%; color: var(--primary-color); }
-        .na-cell { background-color: var(--na-bg); }
-        .eca-cell { background-color: var(--eca-bg); }
-        .a-cell { background-color: var(--a-bg); border-left: 3px solid var(--primary-color); }
+        /* Ajustement des couleurs de fond des cellules */
+        .ac-cell { background-color: #fafff4; font-weight: 700; width: 20%; color: #2e7d32; }
+        .na-cell { background-color: #ffe4e6; }
+        .eca-cell { background-color: #fef9c3; }
+        .a-cell { 
+            background-color: #dcfce7; 
+            /* Bordure gauche plus épaisse pour marquer l'acquis */
+            border-left: 6px solid #2e7d32; 
+        }
+
         
         /* Bouton Sticky */
         .home-link { 
