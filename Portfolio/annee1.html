@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Année 1 - BUT Informatique</title>
+    <style>
+        :root {
+            /* Palette Nature */
+            --primary-color: #2e7d32; 
+            --text-color: #1a2e05;    
+            --table-border: #a3b18a;  
+            
+            /* Couleurs d'état */
+            --na-bg: #ffe4e6;         
+            --eca-bg: #fef9c3;        
+            --a-bg: #dcfce7;          
+            
+            --nav-hover: #dcfce7;     
+            --th-bg: #ecfccb;         
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+
+            /* --- CORRECTION BACKGROUND --- */
+            /* Couleur de secours (si l'image charge mal) */
+            background-color: #4ade80; 
+            
+            /* Image de champ d'herbe fiable */
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/dd/Mossy_Forest_Floor.jpg');
+            
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh; /* Force le body à prendre toute la hauteur */
+        }
+
+        header {
+            max-width: 1100px;
+            margin: 0 auto 40px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 { margin: 0; color: var(--primary-color); font-size: 2.5rem; }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            max-width: 1100px;
+            margin: 0 auto 30px;
+            border: 1px solid var(--table-border);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover { background: var(--nav-hover); color: var(--primary-color); }
+
+        section {
+            max-width: 1100px;
+            margin: 0 auto 50px;
+            background: rgba(255, 255, 255, 0.98); /* Quasi opaque pour lisibilité */
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border: 1px solid #e5e7eb;
+        }
+
+        h2 { 
+            border-left: 5px solid var(--primary-color); 
+            padding-left: 15px; 
+            margin-bottom: 20px; 
+            color: var(--primary-color);
+        }
+
+        .table-container { overflow-x: auto; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th, td {
+            border: 1px solid var(--table-border);
+            padding: 15px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.9rem;
+        }
+
+        th { 
+            background-color: var(--th-bg); 
+            font-weight: 700; 
+            color: var(--primary-color); 
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .ac-cell { background-color: #fafff4; font-weight: 600; width: 20%; color: var(--primary-color); }
+        .na-cell { background-color: var(--na-bg); }
+        .eca-cell { background-color: var(--eca-bg); }
+        .a-cell { background-color: var(--a-bg); border-left: 3px solid var(--primary-color); }
+        
+        /* Bouton Sticky */
+        .home-link { 
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            text-decoration: none; 
+            color: var(--primary-color); 
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border: 1px solid var(--table-border);
+            transition: all 0.3s ease;
+        }
+
+        .home-link:hover {
+            background: var(--nav-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .home-link {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+                box-shadow: none;
+                background: white;
+                padding: 10px;
+            }
+        }
+
+        footer { 
+            text-align: center; 
+            margin-top: 50px; 
+            color: white; 
+            font-size: 0.9rem; 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.4);
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block; /* Pour ne pas prendre toute la largeur */
+            /* Centrage du footer */
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="home-link">← Retour à l'accueil</a>
+        <h1>Portfolio - Année 1</h1>
+    </header>
+
+    <nav aria-label="Sommaire des compétences">
+        <ul>
+            <li><a href="#c1">C1: Réaliser</a></li>
+            <li><a href="#c2">C2: Optimiser</a></li>
+            <li><a href="#c3">C3: Administrer</a></li>
+            <li><a href="#c4">C4: Gérer les données</a></li>
+            <li><a href="#c5">C5: Conduire</a></li>
+            <li><a href="#c6">C6: Collaborer</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="c1">
+            <h2>Compétence 1: Réaliser le développement d'une application</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">AC</th>
+                            <th scope="col">Non acquis</th>
+                            <th scope="col">En cours d'acquisition</th>
+                            <th scope="col">Acquis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC11.01<br>Implémenter des conceptions simples</th>
+                            <td class="na-cell">- Code provoquant des erreurs d'exécution<br>- Absence totale de commentaires<br>- Indentation inexistante<br>- Nomenclature des variables incohérente<br>- Présence de boucles infinies</td>
+                            <td class="eca-cell">- Fonctionnalités partiellement opérationnelles<br>- Architecture du code confuse<br>- Redondance d'instructions<br>- Déclaration de variables inutiles</td>
+                            <td class="a-cell"><u>- Code fonctionnel et stable</u><br><u>- Documentation claire et pertinente</u><br><u>- Structure logique et lisible</u><br><u>- Optimisation des ressources</u></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC11.02<br>Élaborer des conceptions simples</th>
+                            <td class="na-cell">- Mauvaise interprétation du besoin<br>- Méconnaissance des diagrammes de conception<br>- Modélisation inexploitable</td>
+                            <td class="eca-cell"><u>- Réponse partielle aux attentes</u><br><u>- Échanges incomplets avec le client</u><br><u>- Lisibilité de la conception à améliorer</u></td>
+                            <td class="a-cell">- Analyse exhaustive des besoins<br>- Conception structurée et compréhensible<br>- Diagrammes UML cohérents et justifiés</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC11.03<br>Faire des essais et évaluer</th>
+                            <td class="na-cell">- Absence de comparaison des résultats<br>- Tests inexistants ou mal exploités</td>
+                            <td class="eca-cell"><u>- Tests réalisés mais mal analysés</u><br>- Résultats incohérents non expliqués<br><u>- Correction incomplète des anomalies</u></td>
+                            <td class="a-cell">- Protocole de test conforme aux spécifications<br><u>- Identification et correction des erreurs</u><br>- Interprétation claire des résultats</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC11.04<br>Développer des interfaces</th>
+                            <td class="na-cell">- Interface inopérante<br>- Dysfonctionnement des contrôles (boutons)<br>- Navigation impossible<br>- Instabilité de l'application</td>
+                            <td class="eca-cell">- Navigation complexe ou illogique<br>- Retours visuels (feedbacks) ambigus<br><u>- Non-respect de la charte graphique</u></td>
+                            <td class="a-cell">- Prise en main intuitive<br><u>- Parcours utilisateur fluide</u><br>- Respect des 8 critères ergonomiques de Bastien et Scapin</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="c2">
+            <h2>Compétence 2: Optimiser des applications informatiques</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">AC</th>
+                            <th scope="col">NA (Non acquis)</th>
+                            <th scope="col">ECA (En Cours d'Acquisition)</th>
+                            <th scope="col">A (Acquis)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC12.01<br>Analyser un problème avec méthode</th>
+                            <td class="na-cell">- Méconnaissance des concepts algorithmiques fondamentaux<br>- Incapacité à décomposer le problème</td>
+                            <td class="eca-cell"><u>- Identification imprécise des enjeux</u><br><u>- Analyse lacunaire de certaines composantes du sujet</u></td>
+                            <td class="a-cell">- Identification précise des éléments structurants<br>- Choix pertinent des algorithmes et structures de données</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC12.02<br>Comparer des algorithmes pour des problèmes classiques</th>
+                            <td class="na-cell">- Aucun test comparatif réalisé<br>- Incohérence des résultats<br>- Absence de métriques de comparaison</td>
+                            <td class="eca-cell">- Critères de choix flous ou mal appliqués<br>- Analyse superficielle des performances</td>
+                            <td class="a-cell">- Argumentation fondée sur des métriques<br><u>- Protocole de test rigoureux</u><br>- Analyse de la complexité temporelle et spatiale<br>- Documentation soignée des résultats</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC12.03<br>Formaliser et mettre en œuvre des outils mathématiques</th>
+                            <td class="na-cell">- Utilisation inadaptée des outils mathématiques<br>- Erreurs dans les formules appliquées<br>- Erreurs de calcul</td>
+                            <td class="eca-cell">- Manque de rigueur dans la démarche<br>- Étapes de résolution peu détaillées<br><u>- Présentation formelle à revoir</u></td>
+                            <td class="a-cell"><u>- Usage pertinent et précis des outils</u><br>- Formalisation rigoureuse des problèmes informatiques<br>- Résultats exacts et validés expérimentalement</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="c3">
+            <h2>Compétence 3: Administrer des systèmes informatiques complexes</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Compétences</th>
+                            <th scope="col">Non Acquis</th>
+                            <th scope="col">En cours d'Acquisition</th>
+                            <th scope="col">Acquis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC 13.01<br>Identifier les différents composants</th>
+                            <td class="na-cell">- Méconnaissance du rôle des composants matériels<br>- Confusion entre les différents éléments</td>
+                            <td class="eca-cell"><u>- Identification des composants majeurs (CPU, ALU, RAM...)</u></td>
+                            <td class="a-cell">- Maîtrise des rôles de chaque composant<br>- Capacité à situer l'ensemble des éléments d'une architecture</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC 13.02<br>Utiliser les fonctionnalités de base d'un système multi tâches</th>
+                            <td class="na-cell">- Échec dans l'exécution de tâches simples<br>- Incompréhension des concepts multi-tâches et multi-utilisateurs</td>
+                            <td class="eca-cell"><u>- Gestion basique des processus</u><br><u>- Gestion des comptes utilisateurs et groupes</u></td>
+                            <td class="a-cell">- Gestion avancée des processus (arrière-plan/avant-plan)<br>- Manipulation experte des tâches (PID, signaux de contrôle, arrêt)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC 13.03<br>Installer et configurer un système d'exploitation</th>
+                            <td class="na-cell">- Échec du transfert d'ISO sur la machine cible<br>- Incapacité à documenter la procédure d'installation.</td>
+                            <td class="eca-cell">- Installation de l'OS réussie mais configuration incomplète<br>- Installation simple d'applications</td>
+                            <td class="a-cell"><u>- Maîtrise de l'interface en ligne de commande (CLI)</u><br>- Configuration avancée des logiciels<br>- Personnalisation fine des paramètres système</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC 13.04<br>Configurer un poste de travail dans un réseau d'entreprise</th>
+                            <td class="na-cell">- Incapacité à modéliser les rôles réseaux selon les profils utilisateurs</td>
+                            <td class="eca-cell"><u>- Création de rôles et permissions avec quelques incohérences</u></td>
+                            <td class="a-cell">- Configuration précise des rôles et droits d'accès dans un contexte d'entreprise</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="c4">
+            <h2>Compétence 4: Gérer des données de l'information</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">AC</th>
+                            <th scope="col">Non Acquis</th>
+                            <th scope="col">En cours d'Acquisition</th>
+                            <th scope="col">Acquis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC 14.01<br>Mettre à jour et interroger une base de données relationnelle</th>
+                            <td class="na-cell">- Méconnaissance des requêtes de manipulation<br>- Difficultés avec l'interface SQL de base</td>
+                            <td class="eca-cell">- Complexité inutile des requêtes par méconnaissance des opérateurs<br>- Maîtrise limitée à la syntaxe de mise à jour simple</td>
+                            <td class="a-cell"><u>- Mises à jour efficaces respectant l'intégrité référentielle</u><br>- Rédaction de requêtes optimisées, concises et structurées</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC 14.02<br>Visualiser des données</th>
+                            <td class="na-cell">- Requêtes syntaxiquement incorrectes ou mal structurées<br>- Mauvais choix de mots-clés pour l'extraction</td>
+                            <td class="eca-cell"><u>- Compréhension globale du schéma de données</u><br>- Limitation aux jointures élémentaires</td>
+                            <td class="a-cell"><u>- Extraction complète et ciblée des données</u><br>- Maîtrise des requêtes complexes et jointures multiples<br>- Capacité à formater les résultats pour la visualisation</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC 14.03<br>Concevoir une base de données relationnelle</th>
+                            <td class="na-cell"><u>- Utilisation de verbes d'action inappropriés dans les associations</u><br>- Présence de redondances et synonymes dans le dictionnaire des données<br>- Conception déconnectée du besoin client<br>- Non-respect des règles de passage MCD/MLD</td>
+                            <td class="eca-cell">- Respect des normes graphiques et littérales<br><u>- Cardinalités techniquement valides mais sémantiquement inexactes</u></td>
+                            <td class="a-cell">- Terminologie des associations cohérente avec le contexte métier<br>- Modélisation et cardinalités fidèles au cahier des charges et aux règles de gestion</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="c5">
+            <h2>Compétence 5: Conduire un projet</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">AC</th>
+                            <th scope="col">Non Acquis</th>
+                            <th scope="col">En cours d'Acquisition</th>
+                            <th scope="col">Acquis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC15.01<br>Appréhender les besoins du client et de l'utilisateur</th>
+                            <td class="na-cell">- Prise en compte insuffisante de l'utilisateur final<br>- Compréhension approximative des attentes client</td>
+                            <td class="eca-cell"><u>- Focalisation unique sur l'utilisateur final sans vision globale</u></td>
+                            <td class="a-cell">- Analyse complète des besoins utilisateurs, contraintes techniques et fonctionnelles incluses</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC15.02<br>Mettre en place les outils de gestion de projet</th>
+                            <td class="na-cell">- Organisation sommaire sans méthodologie<br>- Analyse des risques et coûts superficielle<br>- Méthode QQOQCP ignorée</td>
+                            <td class="eca-cell">- Outils PERT/GANTT présents mais sous-exploités<br>- Manque de rigueur dans l'analyse des risques<br>- Questionnement QQOQCP incomplet</td>
+                            <td class="a-cell"><u>- Planification efficace via PERT et GANTT</u><br>- Analyse détaillée et rédigée des risques et des coûts</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC15.03<br>Identifier les acteurs et les différentes phases</th>
+                            <td class="na-cell">- Méconnaissance des acteurs du cycle de développement</td>
+                            <td class="eca-cell"><u>- Identification imprécise des parties prenantes</u><br><u>- Répartition arbitraire des tâches</u></td>
+                            <td class="a-cell">- Adaptation aux forces et faiblesses de chaque acteur<br>- Répartition optimisée des tâches (Matrice d'Eisenhower)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="c6">
+            <h2>Compétence 6: Collaborer au sein d'une équipe informatique</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">AC</th>
+                            <th scope="col">Non Acquis</th>
+                            <th scope="col">En cours d'Acquisition</th>
+                            <th scope="col">Acquis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC16.01<br>Comprendre l'écosystème numérique et s'y intégrer</th>
+                            <td class="na-cell">- Incompréhension de l'environnement numérique; intégration difficile.</td>
+                            <td class="eca-cell"><u>- Début de repérage des interactions, adaptation laborieuse à la dynamique de groupe.</u></td>
+                            <td class="a-cell">- Identification claire des flux et collaboration fluide avec les membres de l'équipe.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC16.02<br>Identifier les compétences requises selon les secteurs informatiques</th>
+                            <td class="na-cell">- Confusion entre les différents domaines de l'informatique.</td>
+                            <td class="eca-cell"><u>- Connaissance théorique des soft-skills (écoute, gestion de conflit) sans application systématique.</u></td>
+                            <td class="a-cell">- Maîtrise de la communication et compréhension fine des secteurs informatiques.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC16.03<br>Identifier les statuts, fonctions et rôles au sein d'une équipe pluridisciplinaire</th>
+                            <td class="na-cell">- Méconnaissance des statuts et de l'utilité des rôles dans l'équipe.</td>
+                            <td class="eca-cell">- Vision globale des responsabilités sans en saisir tous les enjeux.</td>
+                            <td class="a-cell"><u>- Identification précise des rôles et exploitation de leur complémentarité.</u></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC16.04<br>Développer des compétences interpersonnelles pour le travail en équipe</th>
+                            <td class="na-cell">- Absence d'interaction; travail en isolement.</td>
+                            <td class="eca-cell">- Prise de responsabilité et communication à renforcer.</td>
+                            <td class="a-cell"><u>- Écoute active et respect efficace des directives collectives.</u></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="culture">
+            <h2>Culture Générale et Ouverture</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div style="padding: 15px; border: 1px solid var(--table-border); border-radius: 8px; background-color: #fafff4;">
+                    <h3>Géographie Française</h3>
+                    <ul>
+                        <li><strong>Les grandes villes :</strong> Maîtrise de la carte de France, permettant de situer précisément les principales métropoles et de comprendre le maillage territorial national.</li>
+                    </ul>
+                </div>
+                <div style="padding: 15px; border: 1px solid var(--table-border); border-radius: 8px; background-color: #fafff4;">
+                    <h3>Histoire de l'Art</h3>
+                    <ul>
+                        <li><strong>Courants de peinture :</strong> Exploration des grands mouvements artistiques (Impressionnisme, Cubisme, etc.) pour développer une sensibilité esthétique et comprendre l'évolution culturelle à travers les époques.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Portfolio Maël Auffray - BUT Informatique Année 1</p>
+    </footer>
+
+</body>
+</html>

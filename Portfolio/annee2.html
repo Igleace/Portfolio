@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Compétences - Année 2 - BUT Informatique</title>
+    <style>
+        :root {
+            /* Palette Nature / Verdure */
+            --primary-color: #2e7d32; /* Vert forêt pour les éléments importants */
+            --bg-color: #f7fee7;      /* Fond écru/vert très pâle (Lime-50) */
+            --text-color: #1a2e05;    /* Texte vert très sombre (presque noir) */
+            --table-border: #a3b18a;  /* Bordures couleur vert sauge */
+            
+            /* Couleurs d'état */
+            --na-bg: #ffe4e6;         /* Rouge très doux */
+            --eca-bg: #fef9c3;        /* Jaune soleil doux */
+            --a-bg: #dcfce7;          /* Vert frais pour l'acquis */
+            
+            --nav-hover: #dcfce7;     /* Couleur au survol du menu */
+            --th-bg: #ecfccb;         /* Fond des en-têtes de tableau (Lime-100) */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            background-color: #4ade80; 
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/dd/Mossy_Forest_Floor.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        header {
+            max-width: 1100px;
+            margin: 0 auto 40px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 { margin: 0; color: var(--primary-color); font-size: 2.5rem; }
+
+        nav {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.15); /* Ombre légèrement verte */
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            max-width: 1100px;
+            margin: 0 auto 30px;
+            border: 1px solid var(--table-border);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover { background: var(--nav-hover); color: var(--primary-color); }
+
+        section {
+            max-width: 1100px;
+            margin: 0 auto 50px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        h2 { 
+            border-left: 5px solid var(--primary-color); 
+            padding-left: 15px; 
+            margin-bottom: 20px; 
+            color: var(--primary-color);
+        }
+
+        .table-container { overflow-x: auto; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th, td {
+            border: 1px solid var(--table-border);
+            padding: 15px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.9rem;
+        }
+
+        th { 
+            background-color: var(--th-bg); 
+            font-weight: 700; 
+            color: var(--primary-color); 
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .ac-cell { background-color: #fafff4; font-weight: 600; width: 25%; color: var(--primary-color); }
+        .na-cell { background-color: var(--na-bg); }
+        .eca-cell { background-color: var(--eca-bg); }
+        .a-cell { background-color: var(--a-bg); border-left: 3px solid var(--primary-color); }
+        
+        a:focus { outline: 3px solid var(--primary-color); outline-offset: 2px; }
+
+        footer { text-align: center; margin-top: 50px; color: #576574; font-size: 0.9rem; }
+        
+        /* Bouton Sticky */
+        .home-link { 
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            text-decoration: none; 
+            color: var(--primary-color); 
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid var(--table-border);
+            transition: all 0.3s ease;
+        }
+
+        .home-link:hover {
+            background: var(--nav-hover);
+            box-shadow: 0 4px 8px rgba(46, 125, 50, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .home-link {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+                box-shadow: none;
+                background: none;
+                padding: 0;
+            }
+        }
+
+        .evidence-container {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed var(--table-border);
+        }
+
+        .evidence-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+        }
+
+        .evidence-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+            cursor: zoom-in;
+            transition: transform 0.2s;
+            border: 1px solid #e5e7eb;
+        }
+
+        .evidence-card img:hover {
+            transform: scale(1.02);
+        }
+
+        .evidence-desc {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            background-color: #fafff4; /* Fond très léger sous le texte */
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 3px solid var(--table-border);
+        }
+
+        .evidence-desc strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="home-link">← Retour à l'accueil</a>
+        <h1>Portfolio - Année 2</h1>
+    </header>
+
+    <nav aria-label="Sommaire des compétences">
+        <ul>
+            <li><a href="#c1">C1: Réaliser</a></li>
+            <li><a href="#c2">C2: Optimiser</a></li>
+            <li><a href="#c3">C3: Administrer</a></li>
+            <li><a href="#c4">C4: Gérer les données</a></li>
+            <li><a href="#c5">C5: Conduire</a></li>
+            <li><a href="#c6">C6: Collaborer</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="c1">
+            <h2>Compétence 1 : Réaliser</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Apprentissage Critique (Niveau 2)</th>
+                            <th scope="col">Non Acquis</th>
+                            <th scope="col">En Cours</th>
+                            <th scope="col">Acquis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC21.01 | Élaborer et implémenter les spécifications fonctionnelles et non fonctionnelles à partir des exigences</th>
+                            <td class="na-cell">Difficulté à dissocier les besoins métiers des contraintes techniques (performance, sécurité).</td>
+                            <td class="eca-cell"><u>Spécifications définies mais implémentation grevée par une dette technique sur le non-fonctionnel.</u></td>
+                            <td class="a-cell">Transposition complète des exigences en une architecture modulaire et fonctionnelle.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC21.02 | Appliquer des principes d’accessibilité et d’ergonomie</th>
+                            <td class="na-cell">Sémantique HTML ignorée et contrastes inadaptés (non-respect WCAG).</td>
+                            <td class="eca-cell"><u>Usage de frameworks UI standards sans adaptation aux technologies d'assistance.</u></td>
+                            <td class="a-cell">Interface conforme aux 8 critères ergonomiques et aux standards d'accessibilité (A11y).</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC21.03 | Adopter de bonnes pratiques de conception et de programmation</th>
+                            <td class="na-cell">Architecture monolithique, responsabilités mélangées, absence de documentation.</td>
+                            <td class="eca-cell">Utilisation de fonctions mais sous-exploitation des patrons de conception (Design Patterns).</td>
+                            <td class="a-cell"><u>Code maintenable, modulaire et documenté, facilitant la reprise par un tiers.</u></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC21.04 | Vérifier et valider la qualité de l’application par les tests</th>
+                            <td class="na-cell">Tests manuels uniquement, aucune automatisation.</td>
+                            <td class="eca-cell"><u>Présence de tests unitaires mais lacunes sur les tests d'intégration des flux critiques.</u></td>
+                            <td class="a-cell">Stratégie de test complète et robuste (Unitaires, Intégration, Bout-en-bout).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="evidence-container">
+                <h3 class="evidence-title">Preuves de réalisation</h3>
+                <div class="evidence-grid">
+                    <div class="evidence-card">
+                        <img src="images/competence1-1.png" alt="Interface de l'application ÉcoGestUM">
+                        <div class="evidence-desc">
+                            <strong>Conception et Ergonomie Web (ÉcoGestUM) - AC21.01 & AC21.02</strong>
+                            Concrétisation des exigences fonctionnelles via la plateforme ÉcoGestUM. L'interface a été conçue en appliquant strictement les principes d'ergonomie et d'accessibilité, garantissant une navigation intuitive pour la gestion des inscriptions et la visualisation cartographique.
+                        </div>
+                    </div>
+
+                    <div class="evidence-card">
+                        <img src="images/competence1-2.png" alt="Diagramme de séquence du pattern Décorateur">
+                        <div class="evidence-desc">
+                            <strong>L'utilisation de design patterns - AC21.03</strong>
+                            Illustration de l'architecture logicielle modulaire via le pattern Décorateur (présenté ici à titre d'exemple). Ce choix de conception permet d'enrichir dynamiquement les fonctionnalités des objets sans altérer le code existant, assurant ainsi la maintenabilité et le respect du principe SOLID Open/Closed.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="c2">
+            <h2>Compétence 2 : Optimiser</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Apprentissage Critique (Niveau 2)</th>
+                            <th scope="col">Non Acquis</th>
+                            <th scope="col">En Cours</th>
+                            <th scope="col">Acquis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC22.01 | Choisir des structures de données complexes adaptées au problème</th>
+                            <td class="na-cell">Recours systématique aux tableaux simples, inefficace pour les recherches fréquentes ($O(n)$).</td>
+                            <td class="eca-cell"><u>Utilisation de HashMaps/Sets sans maîtrise de la gestion des collisions.</u></td>
+                            <td class="a-cell">Sélection optimale de structures (arbres, graphes) pour minimiser l'empreinte mémoire et les temps d'accès.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC22.02 | Utiliser des techniques algorithmiques adaptées pour des problèmes complexes</th>
+                            <td class="na-cell">Résolution par force brute inadaptée aux grands volumes de données.</td>
+                            <td class="eca-cell">Récursivité simple implémentée sans mémoïsation ou optimisation terminale.</td>
+                            <td class="a-cell"><u>Mise en œuvre d'algorithmes avancés (Programmation dynamique, Diviser pour Régner).</u></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC22.03 | Comprendre les enjeux et moyens de sécurisation des données et du code</th>
+                            <td class="na-cell">Absence d'assainissement des entrées (failles XSS/SQLi potentielles).</td>
+                            <td class="eca-cell">Intégration de librairies de sécurité sans compréhension des mécanismes cryptographiques.</td>
+                            <td class="a-cell"><u>Application du principe "Security by Design" et validation rigoureuse des flux.</u></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC22.04 | Évaluer l’impact environnemental et sociétal des solutions proposées</th>
+                            <td class="na-cell">Impact énergétique et stockage ignorés lors du développement.</td>
+                            <td class="eca-cell"><u>Conscience des enjeux d'éco-conception mais absence de mesure concrète.</u></td>
+                            <td class="a-cell">Optimisation active des ressources (CPU/Réseau) dans une démarche Green IT.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="evidence-container">
+                <h3 class="evidence-title">Preuves de réalisation</h3>
+                <div class="evidence-grid">
+                    <div class="evidence-card">
+                        <img src="images/competence2-1-1.png" alt="Implémentation du Chiffre de Vigenere en Python">
+                        <img src="images/competence2-1-2.png" alt="Implémentation du Dechiffre de Vigenere en Python">
+                        <div class="evidence-desc">
+                            <strong>Algorithmique et Sécurisation (Chiffre de Vigenère) - AC22.02 & AC22.03</strong>
+                            J'ai conçu ce script pour chiffrer et déchiffrer des messages via la méthode de Vigenère. Ce projet m'a permis de mettre en pratique l'arithmétique modulaire pour sécuriser des données, tout en perfectionnant ma logique de manipulation de chaînes de caractères.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="c3">
+            <h2>Compétence 3 : Administrer</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Apprentissage Critique (Niveau 2)</th>
+                            <th scope="col">Non Acquis</th>
+                            <th scope="col">En Cours</th>
+                            <th scope="col">Acquis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC23.01 | Concevoir et développer des applications communicantes</th>
+                            <td class="na-cell">Incapacité à implémenter des Sockets ou protocoles HTTP/REST.</td>
+                            <td class="eca-cell"><u>Appels API fonctionnels mais gestion défaillante de l'asynchronisme et des erreurs.</u></td>
+                            <td class="a-cell">Développement d'architectures client-serveur robustes et asynchrones.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC23.02 | Utiliser des serveurs et des services réseaux virtualisés</th>
+                            <td class="na-cell">Développement limité aux environnements locaux, sans isolation.</td>
+                            <td class="eca-cell"><u>Usage basique de VM, configuration réseau virtuelle absente.</u></td>
+                            <td class="a-cell">Maîtrise de la conteneurisation (Docker) et déploiement sur le Cloud.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC23.03 | Sécuriser les services et données d’un système</th>
+                            <td class="na-cell">Services exposés sans pare-feu ni contrôle d'accès.</td>
+                            <td class="eca-cell">Mots de passe stockés mais politique de sécurité (rotation, salage) insuffisante.</td>
+                            <td class="a-cell"><u>Durcissement système (hardening) et gestion fine des listes de contrôle d'accès (ACL).</u></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="evidence-container">
+                <h3 class="evidence-title"> Preuves de réalisation</h3>
+                <div class="evidence-grid">
+                    <div class="evidence-card">
+                        <img src="images/competence3-1.png" alt="Interface de connexion Musicode">
+                        <div class="evidence-desc">
+                            <strong>Développement d'une application Web (Musicode) - AC23.01</strong>
+                            Mise en œuvre d'une architecture client-serveur asynchrone pour l'application Musicode. Cette interface de connexion gère les échanges sécurisés avec le backend, assurant une expérience utilisateur réactive lors de l'authentification.
+                        </div>
+                    </div>
+
+                    <div class="evidence-card">
+                        <img src="images/competence3-2.png" alt="Schéma d'architecture réseau avec GNS3">
+                        <div class="evidence-desc">
+                            <strong>Architecture et Virtualisation Réseau - AC23.02</strong>
+                            Conception et simulation d'une infrastructure réseau complète sous GNS3. Ce schéma illustre la mise en place de VLANs, le routage inter-réseaux et la configuration de services virtualisés, démontrant une expertise dans le déploiement d'environnements complexes et isolés.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="c4">
+            <h2>Compétence 4 : Gérer</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Apprentissage Critique (Niveau 2)</th>
+                            <th scope="col">Non Acquis</th>
+                            <th scope="col">En Cours</th>
+                            <th scope="col">Acquis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC24.01 | Optimiser les modèles de données de l’entreprise</th>
+                            <td class="na-cell">Schéma non normalisé, source d'anomalies de mise à jour.</td>
+                            <td class="eca-cell"><u>Modèle 3NF respecté mais absence d'indexation pour les gros volumes.</u></td>
+                            <td class="a-cell">Schémas performants (indexation, partitionnement) et évolutifs.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC24.02 | Assurer la sécurité des données (intégrité et confidentialité)</th>
+                            <td class="na-cell">Accès direct aux tables, sans rôles ni vues restrictives.</td>
+                            <td class="eca-cell"><u>Intégrité des données assurée mais traçabilité (logs) manquante.</u></td>
+                            <td class="a-cell">Politiques complètes : sauvegarde, chiffrement et gestion granulaire des droits.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC24.03 | Organiser la restitution de données à travers la programmation et la visualisation</th>
+                            <td class="na-cell">Données brutes non formatées, inexploitables pour la décision.</td>
+                            <td class="eca-cell"><u>Visualisations graphiques statiques, sans interaction utilisateur.</u></td>
+                            <td class="a-cell">Conception de tableaux de bord (Dashboards) dynamiques alimentés par API.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC24.04 | Manipuler des données hétérogènes</th>
+                            <td class="na-cell">Incapacité à traiter les formats JSON/XML ou les bases NoSQL.</td>
+                            <td class="eca-cell">Parsing de fichiers réussi mais fusion de sources multiples difficile.</td>
+                            <td class="a-cell"><u>Intégration fluide de données SQL et NoSQL dans un même flux applicatif.</u></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="evidence-container">
+                <h3 class="evidence-title"> Preuves de réalisation</h3>
+                <div class="evidence-grid">
+                    <div class="evidence-card">
+                        <img src="images/competence4-1-1.png" alt="MCD de la base de données">
+                        <img src="images/competence4-1-2.png" alt="Script SQL de création de vue">
+                        <div class="evidence-desc">
+                            <strong>Modélisation et Implémentation Relationnelle - AC24.01 - AC24.02 </strong>
+                            De la conception à l'exploitation optimisée. Le Modèle Conceptuel de Données (MCD) garantit une structure normalisée, tandis que le script de création de vue (View) permet de simplifier l'accès aux données complexes et de renforcer la sécurité en masquant la structure physique sous-jacente.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="c5">
+            <h2>Compétence 5 : Conduire</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Apprentissage Critique (Niveau 2)</th>
+                            <th scope="col">Non Acquis</th>
+                            <th scope="col">En Cours</th>
+                            <th scope="col">Acquis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC25.01 | Identifier les processus présents dans une organisation</th>
+                            <td class="na-cell">Déconnexion totale entre l'application technique et le métier du client.</td>
+                            <td class="eca-cell">Identification des processus mais formalisation (BPMN) absente.</td>
+                            <td class="a-cell"><u>Modélisation exhaustive des flux métiers supportés par la solution.</u></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC25.02 | Formaliser les besoins du client et de l'utilisateur</th>
+                            <td class="na-cell">Notes éparses, absence de backlog ou de priorisation.</td>
+                            <td class="eca-cell"><u>User Stories rédigées mais critères d'acceptation trop vagues.</u></td>
+                            <td class="a-cell">Product Backlog complet, priorisé et validé par les parties prenantes.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC25.03 | Identifier les critères de faisabilité d’un projet informatique</th>
+                            <td class="na-cell">Estimations intuitives sans analyse des risques ou des ressources.</td>
+                            <td class="eca-cell"><u>Étude de faisabilité technique réalisée, volets financiers/délais oubliés.</u></td>
+                            <td class="a-cell">Analyse de faisabilité multidimensionnelle (Technique, Humaine, Temporelle).</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC25.04 | Définir et mettre en œuvre une démarche de suivi de projet</th>
+                            <td class="na-cell">Aucun outil de suivi (Jira/Trello) ni rituel d'équipe.</td>
+                            <td class="eca-cell">Utilisation d'un Kanban sans mise à jour de la vélocité.</td>
+                            <td class="a-cell"><u>Pilotage Agile complet (Burndown charts, revues de sprint).</u></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="evidence-container">
+                <h3 class="evidence-title"> Preuves de réalisation</h3>
+                <div class="evidence-grid">
+                    <div class="evidence-card">
+                        <img src="images/competence5-1.png" alt="Tableau Trello">
+                        <div class="evidence-desc">
+                            <strong>Pilotage de projet avec la méthode Kanban (AC25.04)</strong>
+                            Gestion de flux de travail via la méthode Kanban. Ce tableau Trello offre une visualisation temps réel de l'avancement du projet, optimisant la distribution des tâches et la réactivité de l'équipe face aux imprévus.
+                        </div>
+                    </div>
+
+                    <div class="evidence-card">
+                        <img src="images/competence5-2-1.png" alt="Product Backlog">
+                        <img src="images/competence5-2-2.png" alt="Sprint Burn Down Chart">
+                        <div class="evidence-desc">
+                            <strong>Formalisation des besoins et suivi de vélocité (AC25.02 & AC25.04)</strong>
+                            Pilotage de la performance projet. Le Product Backlog assure la structuration et la priorisation des fonctionnalités, tandis que l'analyse du BurnDown Chart permet de mesurer la vélocité de l'équipe et d'ajuster les prévisions de livraison.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="c6">
+            <h2>Compétence 6 : Collaborer</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Apprentissage Critique (Niveau 2)</th>
+                            <th scope="col">Non Acquis</th>
+                            <th scope="col">En Cours</th>
+                            <th scope="col">Acquis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC26.01 | Comprendre la diversité, la structure et la dimension de l’informatique dans une organisation</th>
+                            <td class="na-cell">Ignorance du rôle des services connexes (DSI, Cloud) dans le projet.</td>
+                            <td class="eca-cell"><u>Vision globale acquise mais méconnaissance des cadres juridiques prestataires.</u></td>
+                            <td class="a-cell">Cartographie claire des parties prenantes et de leurs périmètres respectifs.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC26.02 | Appliquer une démarche pour intégrer une équipe informatique</th>
+                            <td class="na-cell">Difficultés avec Git (workflow linéaire) et la communication technique.</td>
+                            <td class="eca-cell">Participation aux Pull Requests mais passivité dans la revue de code.</td>
+                            <td class="a-cell"><u>Maîtrise du Gitflow et intégration proactive dans l'équipe de développement.</u></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC26.03 | Mobiliser les compétences interpersonnelles pour travailler dans une équipe</th>
+                            <td class="na-cell">Passivité ou attitude conflictuelle lors des arbitrages techniques.</td>
+                            <td class="eca-cell"><u>Collaboration correcte mais gestion difficile des imprévus/conflits.</u></td>
+                            <td class="a-cell">Écoute active, force de proposition et médiation efficace.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="ac-cell">AC26.04 | Rendre compte de son activité professionnelle</th>
+                            <td class="na-cell">Rapports techniques obscurs ou trop sommaires pour le public visé.</td>
+                            <td class="eca-cell"><u>Écrits corrects mais présentations orales manquant de clarté.</u></td>
+                            <td class="a-cell">Restitution synthétique et adaptée à l'audience (Français/Anglais).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="evidence-container">
+                <h3 class="evidence-title"> Preuves de réalisation</h3>
+                <div class="evidence-grid">
+                    <div class="evidence-card">
+                        <img src="images/competence6-1.png" alt="Sommaire du Cahier des Charges">
+                        <div class="evidence-desc">
+                            <strong>Élaboration collaborative du Cahier des Charges - AC26.01 & AC26.04</strong>
+                            Synthèse des besoins multi-acteurs dans le Cahier des Charges. Ce livrable formalise la convergence entre les attentes des utilisateurs finaux et les contraintes techniques, résultat d'une démarche d'écoute active et de médiation auprès des différentes parties prenantes.
+                        </div>
+                    </div>
+
+                    <div class="evidence-card">
+                        <img src="images/competence6-2.png" alt="Structure d'un dépôt GitHub">
+                        <div class="evidence-desc">
+                            <strong>Intégration et Valeurs d'Équipe (FORCE) - AC26.02</strong>
+                            Adoption des valeurs FORCE (Focus, Ouverture, Respect, Courage, Engagement) pour structurer la collaboration. Cette charte commune a facilité mon intégration en définissant un cadre de travail sain, favorisant l'ouverture aux critiques constructives et le courage dans la prise de décision collective.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="culture">
+            <h2>Culture Générale</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div style="padding: 15px; border: 1px solid var(--table-border); border-radius: 8px; background-color: #fafff4;">
+                    <h3>Histoire de l'Architecture</h3>
+                    <p><strong>Architectures et Époques :</strong> Étude chronologique des différents styles architecturaux (Roman, Gothique, Renaissance, Moderne, etc.), permettant d'identifier les caractéristiques techniques et esthétiques propres à chaque période historique.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Portfolio Maël Auffray - BUT Informatique Année 2</p>
+    </footer>
+
+</body>
+</html>

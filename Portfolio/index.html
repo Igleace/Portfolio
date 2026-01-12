@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio BUT Informatique - Accueil</title>
+    <style>
+        :root {
+            --primary: #2e7d32;       
+            --secondary: #576574;     
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --accent-hover: #ecfccb;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: #1e293b;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1932&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center; 
+            background-attachment: fixed; 
+            background-repeat: no-repeat;
+        }
+
+        header {
+            background: rgba(46, 125, 50, 0.9); 
+            backdrop-filter: blur(5px);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        main {
+            flex: 1;
+            max-width: 900px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        .intro-text {
+            text-align: center; 
+            font-size: 1.2rem; 
+            margin-bottom: 30px;
+            color: var(--secondary);
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            backdrop-filter: blur(5px);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            backdrop-filter: blur(5px);
+        }
+
+        .card:hover, .card:focus {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+            border-color: #4ade80;
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .card strong {
+            color: var(--primary);
+            font-weight: 700;
+            display: inline-block;
+            margin-top: auto;
+            padding: 8px 16px;
+            background-color: var(--accent-hover);
+            border-radius: 20px;
+            transition: background-color 0.2s;
+        }
+        
+        .card:hover strong {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            font-size: 0.9rem;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-top: none;
+            text-shadow: 1px 1px 2px black;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mon Portfolio de Compétences</h1>
+        <p>Bachelor Universitaire de Technologie en Informatique</p>
+    </header>
+
+    <main>
+        <div class="intro-text">
+            Sélectionnez une année pour consulter le détail des compétences acquises :
+        </div>
+        
+        <nav class="grid" aria-label="Navigation par année">
+            <a href="annee1.html" class="card">
+                <div>
+                    <h2>Première Année</h2>
+                    <p>Acquisition des fondamentaux techniques : développement logiciel, administration système et bases de données relationnelles.</p>
+                </div>
+                <strong>Consulter les 6 compétences →</strong>
+            </a>
+
+            <a href="annee2.html" class="card">
+                <div>
+                    <h2>Deuxième Année</h2>
+                    <p>Montée en expertise et professionnalisation : architecture logicielle, optimisation des performances et pilotage de projets agiles.</p>
+                </div>
+                <strong>Consulter les 6 compétences →</strong>
+            </a>
+        </nav>
+    </main>
+
+    <footer>
+       <p>&copy; 2026 - Portfolio Maël Auffray - BUT Informatique</p>
+    </footer>
+
+</body>
+</html>
