@@ -15,196 +15,322 @@
             --a-bg: #dcfce7;
             --nav-hover: #dcfce7;
             --th-bg: #ecfccb;
+
+            /* Style "tronc gravé" */
+            --trunk-text: #f3e2c7;
+            --trunk-dark: rgba(0,0,0,0.55);
+            --trunk-light: rgba(255,255,255,0.12);
+            --trunk-border: #2b1b12;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
             margin: 0;
             padding: 20px;
-            background-color: #4ade80; 
+
+            /* Fond extérieur (forêt) */
+            background-color: #4ade80;
             background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/dd/Mossy_Forest_Floor.jpg');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             min-height: 100vh;
-        }
 
-        header {
-            max-width: 1100px;
-            margin: 0 auto 40px;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        h1 { margin: 0; color: var(--primary-color); font-size: 2.5rem; }
-
-        nav {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.15);
-            position: sticky;
-            top: 10px;
-            z-index: 100;
-            max-width: 1100px;
-            margin: 0 auto 30px;
-            border: 1px solid var(--table-border);
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        nav a {
-            text-decoration: none;
+            /* Texte par défaut hors tronc */
             color: var(--text-color);
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background 0.3s, color 0.3s;
         }
 
-        nav a:hover { background: var(--nav-hover); color: var(--primary-color); }
+        /* ============ TRONC CENTRAL ============ */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            margin-left: 270px;
+            min-height: calc(100vh - 40px); /* tient compte du padding body */
+            box-sizing: border-box;
 
-        section {
-            max-width: 1100px;
-            margin: 0 auto 50px;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            border: 1px solid #e5e7eb;
+            background-image: url('images/bark.jpg'); /* Place ton image ici: images/bark.jpg */
+            background-repeat: repeat-y;  /* tronc "infini" vertical */
+            background-size: 100% auto;
+
+            border: 6px solid var(--trunk-border);
+            border-radius: 28px;
+
+            /* Effet cylindre */
+            box-shadow:
+                inset 70px 0 120px rgba(0,0,0,0.75),
+                inset -70px 0 120px rgba(0,0,0,0.75),
+                0 30px 60px rgba(0,0,0,0.45);
+
+            padding: 48px 56px 60px;
+            color: var(--trunk-text);
+
+            /* Effet "gravé" global (contour sombre) */
+            text-shadow:
+                -1px -1px 0 rgba(0,0,0,0.95),
+                 1px -1px 0 rgba(0,0,0,0.95),
+                -1px  1px 0 rgba(0,0,0,0.95),
+                 1px  1px 0 rgba(0,0,0,0.95),
+                 0px  2px 6px rgba(0,0,0,0.55);
         }
 
-        h2 { 
-            border-left: 5px solid var(--primary-color); 
-            padding-left: 15px; 
-            margin-bottom: 20px; 
-            color: var(--primary-color);
+        /* Tout le texte du tronc hérite de l'effet gravé */
+        main h1, main h2, main h3, main p, main li, main a, main th, main td, main strong, main u {
+            color: inherit;
+            text-shadow: inherit;
         }
 
-        .table-container { overflow-x: auto; }
-
-        table {
-            width: 100%;
-            min-width: 800px;
-            border-collapse: separate; 
-            border-spacing: 10px; 
-            margin-top: 20px;
+        /* ============ HEADER / NAV SUR LE TRONC ============ */
+        header {
+            text-align: center;
+            margin: 0 0 26px;
+            padding: 0;
         }
 
-        th, td {
-            border: 3px solid #5d4037;
-            border-radius: 8px 15px 8px 15px; 
-            
-            padding: 15px;
-            text-align: left;
-            vertical-align: top;
-            font-size: 0.9rem;
-            box-shadow: 3px 3px 0px rgba(62, 39, 35, 0.4); 
-            background-color: rgba(255, 255, 255, 0.95);
+        h1 {
+            margin: 0;
+            font-size: 2.4rem;
+            letter-spacing: 0.02em;
         }
 
-        th { 
-            background-color: #ecfccb; 
-            color: #2e7d32; 
-            border-width: 4px;
-            border-color: #3e2723;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-        }
+        .home-link {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
 
-        .ac-cell { background-color: #fafff4; font-weight: 700; width: 20%; color: #2e7d32; }
-        .na-cell { background-color: #ffe4e6; }
-        .eca-cell { background-color: #fef9c3; }
-        .a-cell { 
-            background-color: #dcfce7; 
-            border-left: 6px solid #2e7d32; 
-        }
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
 
-        
-        a:focus { outline: 3px solid var(--primary-color); outline-offset: 2px; }
+        text-decoration: none;
+        font-weight: 800;
 
-        footer { text-align: center; margin-top: 50px; color: #576574; font-size: 0.9rem; }
-        
-        .home-link { 
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            text-decoration: none; 
-            color: var(--primary-color); 
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 12px;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border: 1px solid var(--table-border);
-            transition: all 0.3s ease;
+        margin: 0;             /* important: plus de margin-bottom */
+        padding: 8px 12px;
+
+        border: 2px solid rgba(0,0,0,0.55);
+        border-radius: 10px;
+
+        background: rgba(0,0,0,0.25);
+        box-shadow: inset 0 0 18px rgba(0,0,0,0.35);
         }
 
         .home-link:hover {
-            background: var(--nav-hover);
-            box-shadow: 0 4px 8px rgba(46, 125, 50, 0.2);
-            transform: translateY(-2px);
+            background: rgba(0,0,0,0.35);
         }
 
-        @media (max-width: 768px) {
-            .home-link {
-                position: static;
-                display: inline-block;
-                margin-bottom: 20px;
-                box-shadow: none;
-                background: none;
-                padding: 0;
-            }
+/* Sidebar hors du tronc */
+.side-nav{
+  position: fixed;
+  top: 90px;          /* laisse de la place au bouton "Retour à l'accueil" */
+  left: 20px;
+  z-index: 900;
+
+  width: 220px;
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+  color: var(--trunk-text);
+  text-shadow:
+    -1px -1px 0 rgba(0,0,0,0.95),
+     1px -1px 0 rgba(0,0,0,0.95),
+    -1px  1px 0 rgba(0,0,0,0.95),
+     1px  1px 0 rgba(0,0,0,0.95),
+     0px  2px 6px rgba(0,0,0,0.55);
+
+  background: rgba(0,0,0,0.40);
+  border: 2px solid rgba(255,255,255,0.18);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  padding: 12px;
+}
+
+/* Liste verticale */
+.side-nav ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.side-nav a{
+  color: var(--trunk-text);
+  display: block;
+  text-decoration: none;
+  font-weight: 900;
+  text-align: left;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.side-nav a:hover{
+  background: rgba(255,255,255,0.18);
+}
+
+
+        a:focus {
+            outline: 3px solid rgba(243, 226, 199, 0.8);
+            outline-offset: 2px;
         }
 
+        /* ============ SECTIONS "gravées" ============ */
+        section {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin: 0 0 60px;
+        }
+
+        h2 {
+            margin: 0 0 18px;
+            padding: 14px 18px;
+
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+
+            background: rgba(0,0,0,0.25);
+            border: 2px solid rgba(0,0,0,0.55);
+            border-radius: 14px;
+            box-shadow: inset 0 0 22px rgba(0,0,0,0.45);
+        }
+
+        /* ============ TABLE "gravée dans le tronc" ============ */
+        .table-container {
+            overflow-x: auto;
+            background: rgba(0,0,0,0.18);
+            border: 2px solid rgba(0,0,0,0.55);
+            border-radius: 16px;
+            box-shadow: inset 0 0 28px rgba(0,0,0,0.55);
+            padding: 14px;
+        }
+
+        table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        }
+
+
+
+        thead th {
+            background: rgba(0,0,0,0.35);
+            border: 1px solid rgba(0,0,0,0.55);
+            padding: 14px 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-radius: 10px;
+        }
+
+        tbody tr {
+        background: rgba(0,0,0,0.22);
+        box-shadow:
+            inset 3px 3px 10px rgba(0,0,0,0.65),
+            inset -1px -1px 0 rgba(255,255,255,0.06);
+        }
+
+        .ac-cell {
+            width: 28%;
+            font-weight: 900;
+            color: #d7f2c8;
+        }
+
+        /* Indicateurs : couleur "teintée" mais gravée */
+        .na-cell { color: #ffd1d6; }
+        .eca-cell { color: #fff6bf; }
+        .a-cell { color: #d4ffd9; }
+
+        u {
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(243,226,199,0.55);
+        }
+
+        /* ====== Marqueur de niveau (statique) ====== */
+        tbody td { position: relative; }
+        tbody tr td, tbody tr th { transition: transform .12s ease, box-shadow .12s ease, outline-color .12s ease; }
+
+        tbody tr:hover td, tbody tr:hover th{
+            filter: brightness(1.08);
+        }
+
+        tbody tr[data-level="na"]  td.na-cell,
+        tbody tr[data-level="eca"] td.eca-cell,
+        tbody tr[data-level="a"]   td.a-cell{
+            outline: 3px solid rgba(255,255,255,0.95);
+            outline-offset: -3px;
+            box-shadow:
+                0 0 0 2px rgba(0,0,0,0.9),
+                0 10px 22px rgba(0,0,0,0.35);
+            transform: translateY(-1px);
+        }
+
+        tbody tr[data-level="na"]  td.na-cell::after,
+        tbody tr[data-level="eca"] td.eca-cell::after,
+        tbody tr[data-level="a"]   td.a-cell::after{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: .04em;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.70);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+
+        /* ============ PREUVES : gravées aussi ============ */
         .evidence-container {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px dashed var(--table-border);
+            margin-top: 26px;
+            padding-top: 18px;
+            border-top: 2px dashed rgba(243,226,199,0.35);
         }
 
         .evidence-title {
             font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin: 0 0 14px;
+            text-align: center;
+
+            background: rgba(0,0,0,0.20);
+            border: 2px solid rgba(0,0,0,0.55);
+            border-radius: 14px;
+            box-shadow: inset 0 0 18px rgba(0,0,0,0.45);
+            padding: 10px 12px;
         }
 
         .evidence-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 30px;
+            gap: 26px;
+        }
+
+        .evidence-card {
+            background: rgba(0,0,0,0.18);
+            border: 2px solid rgba(0,0,0,0.55);
+            border-radius: 16px;
+            box-shadow: inset 0 0 22px rgba(0,0,0,0.50);
+            padding: 14px;
         }
 
         .evidence-card img {
             width: 100%;
             height: auto;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+            margin-bottom: 12px;
             cursor: zoom-in;
             transition: transform 0.2s;
-            border: 1px solid #e5e7eb;
+            border: 1px solid rgba(0,0,0,0.35);
         }
 
         .evidence-card img:hover {
@@ -212,29 +338,42 @@
         }
 
         .evidence-desc {
-            font-size: 0.9rem;
-            color: var(--text-color);
-            background-color: #fafff4;
-            padding: 10px;
-            border-radius: 4px;
-            border-left: 3px solid var(--table-border);
+            font-size: 0.95rem;
+            padding: 12px 12px;
+            border-radius: 12px;
+
+            background: rgba(0,0,0,0.20);
+            border: 1px solid rgba(0,0,0,0.55);
+            box-shadow: inset 0 0 18px rgba(0,0,0,0.45);
         }
 
         .evidence-desc strong {
-            color: var(--primary-color);
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            font-weight: 900;
+            color: #d7f2c8;
+        }
+
+        /* Footer sur le tronc */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 18px;
+            border-top: 2px dashed rgba(243,226,199,0.35);
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            main { padding: 28px 18px 40px; border-radius: 18px; }
+            .evidence-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
+
 <body>
-
-    <header>
-        <a href="index.html" class="home-link">← Retour à l'accueil</a>
-        <h1>Portfolio - Année 2</h1>
-    </header>
-
-    <nav aria-label="Sommaire des compétences">
+    <nav class="side-nav" aria-label="Sommaire des compétences">
         <ul>
             <li><a href="#c1">C1: Réaliser</a></li>
             <li><a href="#c2">C2: Optimiser</a></li>
@@ -244,8 +383,12 @@
             <li><a href="#c6">C6: Collaborer</a></li>
         </ul>
     </nav>
-
     <main>
+        <header>
+            <a href="index.html" class="home-link">← Retour à l'accueil</a>
+            <h1>Portfolio - Année 2</h1>
+        </header>
+
         <section id="c1">
             <h2>Compétence 1 : Réaliser</h2>
             <div class="table-container">
@@ -259,33 +402,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC21.01 | Élaborer et implémenter les spécifications fonctionnelles et non fonctionnelles à partir des exigences</th>
                             <td class="na-cell">Difficulté à dissocier les besoins métiers des contraintes techniques (performance, sécurité).</td>
-                            <td class="eca-cell"><u>Spécifications définies mais implémentation grevée par une dette technique sur le non-fonctionnel.</u></td>
+                            <td class="eca-cell">Spécifications définies mais implémentation grevée par une dette technique sur le non-fonctionnel.</td>
                             <td class="a-cell">Transposition complète des exigences en une architecture modulaire et fonctionnelle.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="a">
                             <th scope="row" class="ac-cell">AC21.02 | Appliquer des principes d’accessibilité et d’ergonomie</th>
                             <td class="na-cell">Sémantique HTML ignorée et contrastes inadaptés (non-respect WCAG).</td>
-                            <td class="eca-cell"><u>Usage de frameworks UI standards sans adaptation aux technologies d'assistance.</u></td>
+                            <td class="eca-cell">Usage de frameworks UI standards sans adaptation aux technologies d'assistance.</td>
                             <td class="a-cell">Interface conforme aux 8 critères ergonomiques et aux standards d'accessibilité (A11y).</td>
                         </tr>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC21.03 | Adopter de bonnes pratiques de conception et de programmation</th>
                             <td class="na-cell">Architecture monolithique, responsabilités mélangées, absence de documentation.</td>
                             <td class="eca-cell">Utilisation de fonctions mais sous-exploitation des patrons de conception (Design Patterns).</td>
-                            <td class="a-cell"><u>Code maintenable, modulaire et documenté, facilitant la reprise par un tiers.</u></td>
+                            <td class="a-cell">Code maintenable, modulaire et documenté, facilitant la reprise par un tiers.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="a">
                             <th scope="row" class="ac-cell">AC21.04 | Vérifier et valider la qualité de l’application par les tests</th>
                             <td class="na-cell">Tests manuels uniquement, aucune automatisation.</td>
-                            <td class="eca-cell"><u>Présence de tests unitaires mais lacunes sur les tests d'intégration des flux critiques.</u></td>
+                            <td class="eca-cell">Présence de tests unitaires mais lacunes sur les tests d'intégration des flux critiques.</td>
                             <td class="a-cell">Stratégie de test complète et robuste (Unitaires, Intégration, Bout-en-bout).</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
             <div class="evidence-container">
                 <h3 class="evidence-title">Application dans des projets</h3>
                 <div class="evidence-grid">
@@ -321,33 +465,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC22.01 | Choisir des structures de données complexes adaptées au problème</th>
-                            <td class="na-cell">Recours systématique aux tableaux simples, inefficace pour les recherches fréquentes ($O(n)$).</td>
-                            <td class="eca-cell"><u>Utilisation de HashMaps/Sets sans maîtrise de la gestion des collisions.</u></td>
+                            <td class="na-cell">Recours systématique aux tableaux simples, inefficace pour les recherches fréquentes (O(n)).</td>
+                            <td class="eca-cell">Utilisation de HashMaps/Sets sans maîtrise de la gestion des collisions.</td>
                             <td class="a-cell">Sélection optimale de structures (arbres, graphes) pour minimiser l'empreinte mémoire et les temps d'accès.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="a">
                             <th scope="row" class="ac-cell">AC22.02 | Utiliser des techniques algorithmiques adaptées pour des problèmes complexes</th>
                             <td class="na-cell">Résolution par force brute inadaptée aux grands volumes de données.</td>
                             <td class="eca-cell">Récursivité simple implémentée sans mémoïsation ou optimisation terminale.</td>
-                            <td class="a-cell"><u>Mise en œuvre d'algorithmes avancés (Programmation dynamique, Diviser pour Régner).</u></td>
+                            <td class="a-cell">Mise en œuvre d'algorithmes avancés (Programmation dynamique, Diviser pour Régner).</td>
                         </tr>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC22.03 | Comprendre les enjeux et moyens de sécurisation des données et du code</th>
                             <td class="na-cell">Absence d'assainissement des entrées (failles XSS/SQLi potentielles).</td>
                             <td class="eca-cell">Intégration de librairies de sécurité sans compréhension des mécanismes cryptographiques.</td>
-                            <td class="a-cell"><u>Application du principe "Security by Design" et validation rigoureuse des flux.</u></td>
+                            <td class="a-cell">Application du principe "Security by Design" et validation rigoureuse des flux.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC22.04 | Évaluer l’impact environnemental et sociétal des solutions proposées</th>
                             <td class="na-cell">Impact énergétique et stockage ignorés lors du développement.</td>
-                            <td class="eca-cell"><u>Conscience des enjeux d'éco-conception mais absence de mesure concrète.</u></td>
+                            <td class="eca-cell">Conscience des enjeux d'éco-conception mais absence de mesure concrète.</td>
                             <td class="a-cell">Optimisation active des ressources (CPU/Réseau) dans une démarche Green IT.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
             <div class="evidence-container">
                 <h3 class="evidence-title">Application dans des projets</h3>
                 <div class="evidence-grid">
@@ -376,27 +521,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC23.01 | Concevoir et développer des applications communicantes</th>
                             <td class="na-cell">Incapacité à implémenter des Sockets ou protocoles HTTP/REST.</td>
-                            <td class="eca-cell"><u>Appels API fonctionnels mais gestion défaillante de l'asynchronisme et des erreurs.</u></td>
+                            <td class="eca-cell">Appels API fonctionnels mais gestion défaillante de l'asynchronisme et des erreurs.</td>
                             <td class="a-cell">Développement d'architectures client-serveur robustes et asynchrones.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC23.02 | Utiliser des serveurs et des services réseaux virtualisés</th>
                             <td class="na-cell">Développement limité aux environnements locaux, sans isolation.</td>
-                            <td class="eca-cell"><u>Usage basique de VM, configuration réseau virtuelle absente.</u></td>
+                            <td class="eca-cell">Usage basique de VM, configuration réseau virtuelle absente.</td>
                             <td class="a-cell">Maîtrise de la conteneurisation (Docker) et déploiement sur le Cloud.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC23.03 | Sécuriser les services et données d’un système</th>
                             <td class="na-cell">Services exposés sans pare-feu ni contrôle d'accès.</td>
                             <td class="eca-cell">Mots de passe stockés mais politique de sécurité (rotation, salage) insuffisante.</td>
-                            <td class="a-cell"><u>Durcissement système (hardening) et gestion fine des listes de contrôle d'accès (ACL).</u></td>
+                            <td class="a-cell">Durcissement système (hardening) et gestion fine des listes de contrôle d'accès (ACL).</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
             <div class="evidence-container">
                 <h3 class="evidence-title"> Application dans des projets</h3>
                 <div class="evidence-grid">
@@ -432,33 +578,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC24.01 | Optimiser les modèles de données de l’entreprise</th>
                             <td class="na-cell">Schéma non normalisé, source d'anomalies de mise à jour.</td>
-                            <td class="eca-cell"><u>Modèle 3NF respecté mais absence d'indexation pour les gros volumes.</u></td>
+                            <td class="eca-cell">Modèle 3NF respecté mais absence d'indexation pour les gros volumes.</td>
                             <td class="a-cell">Schémas performants (indexation, partitionnement) et évolutifs.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="a">
                             <th scope="row" class="ac-cell">AC24.02 | Assurer la sécurité des données (intégrité et confidentialité)</th>
                             <td class="na-cell">Accès direct aux tables, sans rôles ni vues restrictives.</td>
-                            <td class="eca-cell"><u>Intégrité des données assurée mais traçabilité (logs) manquante.</u></td>
+                            <td class="eca-cell">Intégrité des données assurée mais traçabilité (logs) manquante.</td>
                             <td class="a-cell">Politiques complètes : sauvegarde, chiffrement et gestion granulaire des droits.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="a">
                             <th scope="row" class="ac-cell">AC24.03 | Organiser la restitution de données à travers la programmation et la visualisation</th>
                             <td class="na-cell">Données brutes non formatées, inexploitables pour la décision.</td>
-                            <td class="eca-cell"><u>Visualisations graphiques statiques, sans interaction utilisateur.</u></td>
+                            <td class="eca-cell">Visualisations graphiques statiques, sans interaction utilisateur.</td>
                             <td class="a-cell">Conception de tableaux de bord (Dashboards) dynamiques alimentés par API.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC24.04 | Manipuler des données hétérogènes</th>
                             <td class="na-cell">Incapacité à traiter les formats JSON/XML ou les bases NoSQL.</td>
                             <td class="eca-cell">Parsing de fichiers réussi mais fusion de sources multiples difficile.</td>
-                            <td class="a-cell"><u>Intégration fluide de données SQL et NoSQL dans un même flux applicatif.</u></td>
+                            <td class="a-cell">Intégration fluide de données SQL et NoSQL dans un même flux applicatif.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
             <div class="evidence-container">
                 <h3 class="evidence-title"> Application dans des projets</h3>
                 <div class="evidence-grid">
@@ -487,33 +634,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC25.01 | Identifier les processus présents dans une organisation</th>
                             <td class="na-cell">Déconnexion totale entre l'application technique et le métier du client.</td>
                             <td class="eca-cell">Identification des processus mais formalisation (BPMN) absente.</td>
-                            <td class="a-cell"><u>Modélisation exhaustive des flux métiers supportés par la solution.</u></td>
+                            <td class="a-cell">Modélisation exhaustive des flux métiers supportés par la solution.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="a">
                             <th scope="row" class="ac-cell">AC25.02 | Formaliser les besoins du client et de l'utilisateur</th>
                             <td class="na-cell">Notes éparses, absence de backlog ou de priorisation.</td>
-                            <td class="eca-cell"><u>User Stories rédigées mais critères d'acceptation trop vagues.</u></td>
+                            <td class="eca-cell">User Stories rédigées mais critères d'acceptation trop vagues.</td>
                             <td class="a-cell">Product Backlog complet, priorisé et validé par les parties prenantes.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="na">
                             <th scope="row" class="ac-cell">AC25.03 | Identifier les critères de faisabilité d’un projet informatique</th>
                             <td class="na-cell">Estimations intuitives sans analyse des risques ou des ressources.</td>
-                            <td class="eca-cell"><u>Étude de faisabilité technique réalisée, volets financiers/délais oubliés.</u></td>
+                            <td class="eca-cell">Étude de faisabilité technique réalisée, volets financiers/délais oubliés.</td>
                             <td class="a-cell">Analyse de faisabilité multidimensionnelle (Technique, Humaine, Temporelle).</td>
                         </tr>
-                        <tr>
+                        <tr data-level="a">
                             <th scope="row" class="ac-cell">AC25.04 | Définir et mettre en œuvre une démarche de suivi de projet</th>
                             <td class="na-cell">Aucun outil de suivi (Jira/Trello) ni rituel d'équipe.</td>
                             <td class="eca-cell">Utilisation d'un Kanban sans mise à jour de la vélocité.</td>
-                            <td class="a-cell"><u>Pilotage Agile complet (Burndown charts, revues de sprint).</u></td>
+                            <td class="a-cell">Pilotage Agile complet (Burndown charts, revues de sprint).</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
             <div class="evidence-container">
                 <h3 class="evidence-title"> Application dans des projets</h3>
                 <div class="evidence-grid">
@@ -550,33 +698,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC26.01 | Comprendre la diversité, la structure et la dimension de l’informatique dans une organisation</th>
                             <td class="na-cell">Ignorance du rôle des services connexes (DSI, Cloud) dans le projet.</td>
-                            <td class="eca-cell"><u>Vision globale acquise mais méconnaissance des cadres juridiques prestataires.</u></td>
+                            <td class="eca-cell">Vision globale acquise mais méconnaissance des cadres juridiques prestataires.</td>
                             <td class="a-cell">Cartographie claire des parties prenantes et de leurs périmètres respectifs.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="a">
                             <th scope="row" class="ac-cell">AC26.02 | Appliquer une démarche pour intégrer une équipe informatique</th>
                             <td class="na-cell">Difficultés avec Git (workflow linéaire) et la communication technique.</td>
                             <td class="eca-cell">Participation aux Pull Requests mais passivité dans la revue de code.</td>
-                            <td class="a-cell"><u>Maîtrise du Gitflow et intégration proactive dans l'équipe de développement.</u></td>
+                            <td class="a-cell">Maîtrise du Gitflow et intégration proactive dans l'équipe de développement.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="eca">
                             <th scope="row" class="ac-cell">AC26.03 | Mobiliser les compétences interpersonnelles pour travailler dans une équipe</th>
                             <td class="na-cell">Passivité ou attitude conflictuelle lors des arbitrages techniques.</td>
-                            <td class="eca-cell"><u>Collaboration correcte mais gestion difficile des imprévus/conflits.</u></td>
+                            <td class="eca-cell">Collaboration correcte mais gestion difficile des imprévus/conflits.</td>
                             <td class="a-cell">Écoute active, force de proposition et médiation efficace.</td>
                         </tr>
-                        <tr>
+                        <tr data-level="a">
                             <th scope="row" class="ac-cell">AC26.04 | Rendre compte de son activité professionnelle</th>
                             <td class="na-cell">Rapports techniques obscurs ou trop sommaires pour le public visé.</td>
-                            <td class="eca-cell"><u>Écrits corrects mais présentations orales manquant de clarté.</u></td>
+                            <td class="eca-cell">Écrits corrects mais présentations orales manquant de clarté.</td>
                             <td class="a-cell">Restitution synthétique et adaptée à l'audience (Français/Anglais).</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
             <div class="evidence-container">
                 <h3 class="evidence-title"> Application dans des projets</h3>
                 <div class="evidence-grid">
@@ -598,20 +747,22 @@
                 </div>
             </div>
         </section>
+
         <section id="culture">
             <h2>Culture Générale</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                <div style="padding: 15px; border: 1px solid var(--table-border); border-radius: 8px; background-color: #fafff4;">
-                    <h3>Histoire de l'Architecture</h3>
+                <div style="padding: 15px; border: 2px solid rgba(0,0,0,0.55); border-radius: 16px; background: rgba(0,0,0,0.18); box-shadow: inset 0 0 22px rgba(0,0,0,0.50);">
+                    <h3 style="margin-top:0; text-align:center; background: rgba(0,0,0,0.20); border: 2px solid rgba(0,0,0,0.55); border-radius: 14px; box-shadow: inset 0 0 18px rgba(0,0,0,0.45); padding: 10px 12px;">
+                        Histoire de l'Architecture
+                    </h3>
                     <p><strong>Architectures et Époques :</strong> Étude chronologique des différents styles architecturaux (Roman, Gothique, Renaissance, Moderne, etc.), permettant d'identifier les caractéristiques techniques et esthétiques propres à chaque période historique.</p>
                 </div>
             </div>
         </section>
+
+        <footer>
+            <p>&copy; 2026 - Portfolio Maël Auffray - BUT Informatique Année 2</p>
+        </footer>
     </main>
-
-    <footer>
-        <p>&copy; 2026 - Portfolio Maël Auffray - BUT Informatique Année 2</p>
-    </footer>
-
 </body>
 </html>

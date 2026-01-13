@@ -48,14 +48,17 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
-        main {
-            flex: 1;
-            max-width: 900px;
-            margin: -30px auto 40px;
-            padding: 0 20px;
-            width: 100%;
-            box-sizing: border-box;
-            z-index: 1;
+        main{
+        flex: 1;
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto;          /* au lieu de -30px auto 40px */
+        padding: 0 20px;
+        box-sizing: border-box;
+        z-index: 1;
+
+        display: grid;
+        place-items: center;     /* centre horizontal + vertical */
         }
 
         .intro-text {
@@ -73,65 +76,105 @@
             backdrop-filter: blur(5px);
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+        /* Conteneur des sapins */
+.year-trees{
+  width: fit-content;
+  justify-items: center;
+}
+
+        /* Lien cliquable */
+        .tree-link{
+        position: relative;
+        display: grid;
+        place-items: center;
+        text-decoration: none;
+        color: white;
+        padding: 26px 18px 18px;
+        border-radius: 22px;
+        outline: none;
         }
 
-        .card {
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            border: 2px solid transparent;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            backdrop-filter: blur(5px);
+        /* Sapin (forme) */
+        .tree{
+        width: 220px;
+        height: 260px;
+        background: linear-gradient(180deg, #1b5e20, #2e7d32 55%, #1b5e20);
+        clip-path: polygon(
+            50% 0%,
+            62% 10%,
+            55% 10%,
+            70% 26%,
+            60% 26%,
+            78% 44%,
+            64% 44%,
+            86% 64%,
+            58% 64%,
+            58% 78%,
+            42% 78%,
+            42% 64%,
+            14% 64%,
+            36% 44%,
+            22% 44%,
+            40% 26%,
+            30% 26%,
+            45% 10%,
+            38% 10%
+        );
+        filter: drop-shadow(0 18px 28px rgba(0,0,0,0.35));
+        position: relative;
         }
 
-        .card:hover, .card:focus {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
-            border-color: #4ade80;
-            outline: none;
-            background-color: #ffffff;
+        /* Tronc */
+        .tree::after{
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -34px;
+        transform: translateX(-50%);
+        width: 58px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(180deg, #5d4037, #3e2723);
+        box-shadow: 0 10px 18px rgba(0,0,0,0.35);
         }
 
-        .card h2 {
-            color: var(--primary);
-            margin-top: 0;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+        /* Texte “Année X” posé sur le sapin */
+        .tree-text{
+        position: absolute;
+        top: 44%;
+        transform: translateY(-50%);
+        font-weight: 900;
+        font-size: 1.9rem;
+        letter-spacing: 0.02em;
+        text-shadow: 0 4px 16px rgba(0,0,0,0.65);
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(0,0,0,0.22);
+        border: 1px solid rgba(255,255,255,0.20);
+        backdrop-filter: blur(4px);
         }
 
-        .card p {
-            color: var(--secondary);
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
+        /* Surbrillance hover + focus clavier */
+        .tree-link:hover .tree,
+        .tree-link:focus-visible .tree{
+        filter:
+            drop-shadow(0 22px 36px rgba(0,0,0,0.42))
+            drop-shadow(0 0 22px rgba(236, 252, 203, 0.85));
+        transform: translateY(-6px);
+        transition: transform 0.18s ease, filter 0.18s ease;
         }
-        
-        .card strong {
-            color: var(--primary);
-            font-weight: 700;
-            display: inline-block;
-            margin-top: auto;
-            padding: 8px 16px;
-            background-color: var(--accent-hover);
-            border-radius: 20px;
-            transition: background-color 0.2s;
+
+        .tree-link:hover .tree-text,
+        .tree-link:focus-visible .tree-text{
+        background: rgba(236, 252, 203, 0.92);
+        color: #1b5e20;
+        border-color: rgba(27, 94, 32, 0.35);
+        transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
         }
-        
-        .card:hover strong {
-            background-color: var(--primary);
-            color: white;
+
+        @media (max-width: 720px){
+        .year-trees{ grid-template-columns: 1fr; }
+        .tree{ width: 240px; height: 280px; }
         }
 
         footer {
@@ -148,32 +191,23 @@
 <body>
 
     <header>
-        <h1>Mon Portfolio de Compétences</h1>
-        <p>Bachelor Universitaire de Technologie en Informatique</p>
+        <h1>Mon Portfolio</h1>
+        <p>Maël Auffray</p>
     </header>
 
-    <main>
-        <div class="intro-text">
-            Sélectionnez une année pour consulter le détail des compétences acquises :
-        </div>
-        
-        <nav class="grid" aria-label="Navigation par année">
-            <a href="annee_1.html" class="card">
-                <div>
-                    <h2>Première Année</h2>
-                    <p>Acquisition des fondamentaux techniques : développement logiciel, administration système et bases de données relationnelles.</p>
-                </div>
-                <strong>Consulter les 6 compétences →</strong>
+    <main>        
+        <nav class="year-trees" aria-label="Navigation par année">
+            <a href="annee_1.html" class="tree-link" aria-label="Aller à Année 1">
+                <span class="tree" aria-hidden="true"></span>
+                <span class="tree-text">Année 1</span>
             </a>
 
-            <a href="annee_2.html" class="card">
-                <div>
-                    <h2>Deuxième Année</h2>
-                    <p>Montée en expertise et professionnalisation : architecture logicielle, optimisation des performances et pilotage de projets agiles.</p>
-                </div>
-                <strong>Consulter les 6 compétences →</strong>
+            <a href="annee_2.html" class="tree-link" aria-label="Aller à Année 2">
+                <span class="tree" aria-hidden="true"></span>
+                <span class="tree-text">Année 2</span>
             </a>
         </nav>
+
     </main>
 
     <footer>
